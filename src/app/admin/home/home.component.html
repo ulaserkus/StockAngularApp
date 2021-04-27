@@ -1,0 +1,119 @@
+<div class="card shadow-lg" style="height: 600px;">
+    <div class="card-header">
+        <h4 style="position: relative; top: 20px;"><i class="fas fa-globe"></i> Bakanlık Bilgileri</h4>
+
+        <button type="button" style="position: relative; top: -14px;" class="btn btn-info float-right"
+            data-toggle="modal" data-target="#modal">
+            Bilgileri Güncelle
+        </button>
+    </div>
+
+    <div class="card-body" style="overflow-y: auto;">
+        <div class="row">
+            <div class="col-md-5">
+                <table class="table table-borderless ">
+                    <tbody>
+                        <tr>
+                            <td>Ülke Adı :</td>
+                            <td>{{ministary?.Ministary_Country}}</td>
+
+                        </tr>
+                        <tr>
+
+                            <td>Ülke İhtiyacı :</td>
+                            <td>
+                                <div *ngIf="total; else loading">
+                                    {{total}}
+                                </div>
+                                <ng-template #loading>
+                                    Hesaplanıyor ...
+                                </ng-template>
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>Son Satın Alım Tarihi :</td>
+                            <td>{{ministary?.Last_Purchase_Date.split('T')[0]}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Son Satın Alınan Miktar :</td>
+                            <td>{{ministary?.Last_Purchased_Vaccine_Count}}</td>
+                        </tr>
+                        <tr>
+                            <td>Toplam Aşı Sayısı :</td>
+                            <td>{{ministary?.Total_Vaccine_Count}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-7">
+
+                <div class="mt-2 ml-5">
+                    <div class="card" style="width: 200px;">
+
+                        <img src="{{ministary?.Image_Url}}" class="card-img img-thumbnail"
+                            style="width: 200px; height: 200px;">
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Bakanlık Güncelleme Formu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <ng-container>
+                        <form [formGroup]="updateForm">
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6">
+                                    <label for="name">Ülke Adı</label>
+                                    <input formControlName="name" value="{{ministary?.Ministary_Country}}" type="text" class="form-control" id="name">
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="need">Ülke İhtiyacı</label>
+                                    <input formControlName="need" value="{{ministary?.Ministary_Needs}}" type="text" class="form-control" id="need">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="total">Toplam Aşı</label>
+                                    <input formControlName="total" value="{{ministary?.Total_Vaccine_Count}}" type="text" class="form-control" id="total">
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="total">Resim Adresi</label>
+                                    <input formControlName="img" value="{{ministary?.Image_Url}}" type="text" class="form-control" id="total">
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </ng-container>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white" data-dismiss="modal">Kapat</button>
+                        <button type="submit" class="btn btn-info" (click)="update()">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

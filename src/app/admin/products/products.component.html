@@ -1,0 +1,118 @@
+<div class="card shadow-lg">
+    <div class="card-header">
+        <h4 style="position: relative; top: 20px;"><i class="fas fa-dolly-flatbed"></i> Stoklar</h4>
+        <button type="button" style="position: relative; top: -14px;" class="btn mx-1 btn-info float-right"
+            data-toggle="modal" data-target="#newstockmodal">
+            Yeni Talebte Bulun
+        </button>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-4" *ngFor="let product of products">
+        <div class="card shadow-lg p-1" style="width: 18rem;">
+            <img class="card-img-top" src="{{product?.Image_Url}}" alt="Card image cap" height="200">
+            <div class="card-body p-0 mx-0 " style="height: 12rem;">
+                <h5 class="card-title">{{product.Vaccine_Name}}</h5>
+                <p class="card-text">
+                    <strong>Üretici</strong> : {{product.Producer_Name}}
+                </p>
+                <p class="card-text">
+                    <strong>Miktar</strong> : {{product.Vaccine_Count}}
+                </p>
+                <p class="card-text">
+                    <strong>Üretim tarihi</strong> : {{product.Last_Production_Date.split('T')[0]}}
+                </p>
+
+                <a class="btn btn-block btn-info" data-toggle="modal" data-target="#modal" (click)="updateStock(product)">Ülkeye Ekle</a>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Aşı Ekleme Formu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <ng-container>
+                        <form [formGroup]="form">
+                            <div class="form-row">
+
+                                <div class="form-group col-md-12">
+                                    <label for="count">Aşı Miktarı</label>
+                                    <input formControlName="count" type="text" class="form-control" id="count">
+
+                                </div>
+
+
+                            </div>
+
+                        </form>
+                    </ng-container>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white" data-dismiss="modal">Kapat</button>
+                        <button type="submit" class="btn btn-info" (click)="submit()">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="newstockmodal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Stok Ekleme Formu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <ng-container>
+                        <form [formGroup]="stockForm">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>Toplam Aşı</label>
+                                    <input formControlName="count" type="text" class="form-control">
+
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label>Üretici</label>
+                                    <select formControlName="producerId" class="form-control">
+                                      <option >Üretici Seç</option>
+                                      <option *ngFor="let producer of producers" value="{{producer.Id}}">{{producer.Producer_Name}}</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </ng-container>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white" data-dismiss="modal">Kapat</button>
+                        <button type="submit" class="btn btn-info" (click)="createStock()">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

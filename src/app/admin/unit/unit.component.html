@@ -1,0 +1,76 @@
+<div class="card shadow-lg" style="height: 300px;">
+    <div class="card-header">
+        <h4><i class="fas fa-first-aid"></i> Sağlık Birimleri</h4>
+    </div>
+
+    <div class="card-body" style="overflow-y: scroll;">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead class="table-borderless">
+                        <tr class="text-center">
+                            <th scope="col">Ad</th>
+                            <th scope="col">Telefon</th>
+                            <th scope="col">Adres</th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let unit of units" class="text-center">
+
+                            <td  style="width: 200px;">{{unit?.Unit_Name}}</td>
+                            <td style="width: 200px;">{{unit?.Unit_Phone}}</td>
+                            <td  style="width: 200px;">{{unit?.Unit_Adress}}</td>
+                            <td  style="width: 200px;"><button class="btn btn-danger btn-sm" (click)="deleteUnit(unit)">Sil</button></td>
+
+                        </tr>
+
+
+
+                    </tbody>
+
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="card shadow-lg mt-2" style="height: 300px;">
+    <div class="card-header">
+        <h4><i class="fas fa-bookmark"></i> Raporlar</h4>
+    </div>
+
+    <div class="card-body" style="overflow-y: scroll;">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead class="table-borderless">
+                        <tr class="text-center">
+                            <th scope="col">Ad</th>
+                            <th scope="col">İhtiyaç Miktarı</th>
+                            <th scope="col">Rapor Tarihi</th>
+                            <th></th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let report of reports" class="text-center">
+
+                            <td   style="width: 200px;" >{{report?.Unit_Name}}</td>
+                            <td style="width: 200px;">{{report?.Unit_Needs}}</td>
+                            <td  style="width: 200px;">{{report?.Report_Date.split('T')[0]}}</td>
+                            <td  style="width: 200px;"><button class="btn btn-info btn-sm" (click)="sendVaccine(report)">Teslim Et</button></td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

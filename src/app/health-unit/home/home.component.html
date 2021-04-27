@@ -1,0 +1,103 @@
+<div class="card shadow-lg" style="height: 600px;">
+    <div class="card-header">
+        <h4 style="position: relative; top: 20px;">Birim Bilgileri</h4>
+        <button type="button" style="position: relative; top: -14px;" class="btn btn-info float-right"
+            data-toggle="modal" data-target="#modal">
+            Bilgileri Güncelle
+        </button>
+    </div>
+
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-5">
+                <table class="table table-borderless ">
+                    <tbody>
+                        <tr>
+                            <td>Birim Adı :</td>
+                            <td>{{unit?.Unit_Name}}</td>
+
+                        </tr>
+                        <tr>
+
+                            <td>Birim Adresi :</td>
+                            <td>{{unit?.Unit_Adress}}</td>
+
+                        </tr>
+                        <tr>
+                            <td style="width: 200px;">Birim Telefonu :</td>
+                            <td>{{unit?.Unit_Phone}}</td>
+                        </tr>
+
+                      
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-7">
+                   
+                    <div class="mt-2 ml-5">
+                        <div class="card" style="width: 200px;">
+                             <div class="card-img">
+                                <img src="{{unit?.Image_Url}}"
+                                class="img-thumbnail" style="width: 200px; height: 200px;">
+                             </div>
+                        </div>
+                        
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Birim Güncelleme Formu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <ng-container>
+                        <form [formGroup]="updateForm">
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6">
+                                    <label for="name">Birim Adı</label>
+                                    <input formControlName="name" value="{{unit?.Unit_Name}}" type="text" class="form-control" id="name">
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="address">Birim Adresi</label>
+                                    <input formControlName="address" value="{{unit?.Unit_Adress}}" type="text" class="form-control" id="address">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="phone">Birim Telefonu</label>
+                                    <input formControlName="phone" value="{{unit?.Unit_Phone}}" type="text" class="form-control" id="phone">
+                                </div>
+                               
+                                <div class="form-group col-md-6">
+                                    <label for="img">Resim Adresi</label>
+                                    <input formControlName="img" value="{{unit?.Image_Url}}" type="text" class="form-control" id="img">
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </ng-container>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white" data-dismiss="modal">Kapat</button>
+                        <button type="submit" class="btn btn-info" (click)="update()">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

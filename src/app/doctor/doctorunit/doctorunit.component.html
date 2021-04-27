@@ -1,0 +1,48 @@
+<div class="card shadow-lg" style="height: 600px;">
+    <div class="card-header">
+        <h4>Doktorun Birimi</h4>
+    </div>
+
+    <div class="card-body" style="overflow-y: auto;">
+        <div class="row">
+            <div class="col-md-5">
+                <table class="table table-borderless ">
+                    <tbody>
+                        <tr>
+                            <td>Birim Adı :</td>
+                            <td>{{unit?.Unit_Name}}</td>
+
+                        </tr>
+                        <tr>
+
+                            <td>Birim Adresi :</td>
+                            <td>{{unit?.Unit_Adress}}</td>
+
+                        </tr>
+                        <tr>
+                            <td style="width: 200px;">Birim Telefonu :</td>
+                            <td>{{unit?.Unit_Phone}}</td>
+                        </tr>
+
+                      
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-7">
+               
+                    <div class="mt-2 ml-5">
+                        <div class="card" style="width: 200px;">
+                             <div class="card-img">
+                                <img src="{{unit?.Image_Url}}"
+                                class="img-thumbnail" style="width: 200px; height: 200px;">
+                             </div>
+                        </div>
+                        
+                    </div>
+         
+
+            </div>
+        </div>
+    </div>
+</div>

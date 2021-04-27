@@ -1,0 +1,293 @@
+<div class="card shadow-lg" style="height: 300px;">
+    <div class="card-header">
+
+        <h4 style="position: relative; top: 20px;"><i class="fas fa-user"></i> Kullanıcılar</h4>
+
+
+        <button type="button" style="position: relative; top: -14px;" class="btn btn-info float-right"
+            data-toggle="modal" data-target="#modalForm">
+            Birim Ekle
+        </button>
+
+    </div>
+
+    <div class="card-body" style="overflow-y: auto;">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead class="table-borderless">
+                        <tr class="text-center">
+                            <th style="width: 200px;" scope="col">Kullanıcı Adı</th>
+                            <th style="width: 200px;" scope="col">Rol</th>
+                            <th style="width: 200px;"></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let user of dusers" class="text-center">
+
+                            <td style="width: 200px;">{{user.Username}}</td>
+                            <td style="width: 200px;">{{user.Role}}</td>
+                            <td style="width: 200px;"><button class="btn btn-sm btn-danger" (click)="deleteUser(user)">Sil</button></td>
+
+                        </tr>
+                        <tr *ngFor="let user of husers" class="text-center">
+
+                            <td style="width: 200px;">{{user.Username}}</td>
+                            <td style="width: 200px;">{{user.Role}}</td>
+                            <td style="width: 200px;"><button class="btn btn-sm btn-danger" (click)="deleteUser(user)">Sil</button></td>
+
+                        </tr>
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-lg mt-2" style="height: 300px;">
+    <div class="card-header">
+
+        <h4 style="position: relative; top: 20px;"><i class="fas fa-list-ul"></i> Atama Listesi</h4>
+
+
+        <button type="button" style="position: relative; top: -14px;" class="btn btn-info float-right"
+            data-toggle="modal" data-target="#modal">
+            Kullanıcı Ata
+        </button>
+
+    </div>
+
+    <div class="card-body" style="overflow-y: auto;">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead class="table-borderless">
+                        <tr class="text-center">
+                            <th style="width: 200px;"></th>
+                            <th style="width: 200px;" scope="col">Birim Adı & Doktor Adı</th>
+
+                            <th style="width: 200px;"></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of noRegisteredDoctors" class="text-center">
+
+                            <td style="width: 200px;"><img style="width: 80px; height: 80px;" class="img-thumbnail"
+                                    src="{{user.Image_Url}}"></td>
+                            <td style="width: 200px;">{{user.Doctor_FullName}}</td>
+                            <td style="width: 200px;"></td>
+
+                        </tr>
+                        <tr *ngFor="let user of noRegisteredUnits" class="text-center">
+                            <td style="width: 200px;"><img style="width: 80px; height: 80px;" class="img-thumbnail"
+                                    src="{{user.Image_Url}}"></td>
+                            <td style="width: 200px;">{{user.Unit_Name}}</td>
+                            <td style="width: 200px;"></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Kullanıcı Formu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <select class="btn btn-outline-info float-right" (change)="onChange($event)">
+
+                    <option>Sağlık Birimi</option>
+                    <option>Doktor</option>
+
+                </select>
+                <div class="mt-5">
+
+                    <ng-container *ngIf="optionText=='Sağlık Birimi'">
+                        <form [formGroup]="unitForm">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="name">Birim Adı</label>
+                                    <input formControlName="unitname" type="text" class="form-control" id="name"
+                                        placeholder="exp:Bakırköy Devlet Hastanesi">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="phone">Telefon</label>
+                                    <input formControlName="unitphone" type="text" class="form-control" id="phone"
+                                        placeholder="05555555555">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Address">Adres</label>
+                                <input formControlName="unitaddress" type="text" class="form-control" id="Address"
+                                    placeholder="Bahçelievler/İstanbul">
+                            </div>
+                            <div class="form-group">
+                                <label for="img">Resim Adresi</label>
+                                <input formControlName="unitimageurl" type="text" class="form-control" id="img"
+                                    placeholder="http://localhost:4200/admin">
+                            </div>
+
+
+                        </form>
+
+                    </ng-container>
+
+
+                    <ng-container *ngIf="optionText=='Doktor'">
+                        <form [formGroup]="doctorForm">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="name">Ad-Soyad</label>
+                                    <input formControlName="name" type="text" class="form-control" id="name"
+                                        placeholder="exp:Ulaş">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="phone">Telefon</label>
+                                    <input formControlName="phone" type="text" class="form-control" id="phone"
+                                        placeholder="05555555555">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Address">Adres</label>
+                                <input formControlName="address" type="text" class="form-control" id="Address"
+                                    placeholder="Bahçelievler/İstanbul">
+                            </div>
+                            <div class="form-group">
+                                <label for="Unit">Birim</label>
+                                <select id="Unit" class="form-control" (change)="onChangedId($event)">
+                                    <option>Birim Seç</option>
+                                    <option *ngFor="let item of units">
+                                        <input value="{{item.Id}}" type="hidden">{{item.Unit_Name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="img">Resim Adresi</label>
+                                <input formControlName="imageurl" type="text" class="form-control" id="img"
+                                    placeholder="http://localhost:4200/admin">
+                            </div>
+
+
+                        </form>
+
+                    </ng-container>
+                    <ng-container *ngIf="optionText=='Hasta'">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="name">Ad-Soyad</label>
+                                    <input type="text" class="form-control" id="name" placeholder="exp:Ulaş">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="phone">Telefon</label>
+                                    <input type="text" class="form-control" id="phone" placeholder="05555555555">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="username">Kullanıcı Adı</label>
+                                    <input type="text" class="form-control" id="username" placeholder="exp:user">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="password">Parola</label>
+                                    <input type="text" class="form-control" id="password" placeholder="Parola">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Address">Adres</label>
+                                <input type="text" class="form-control" id="Address"
+                                    placeholder="Bahçelievler/İstanbul">
+                            </div>
+                            <div class="form-group">
+                                <label for="img">Resim Adresi</label>
+                                <input type="text" class="form-control" id="img"
+                                    placeholder="http://localhost:4200/admin">
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Kronik Hastalık
+                                </label>
+                            </div>
+                        </form>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger text-white" data-dismiss="modal">Kapat</button>
+                <button type="submit" class="btn btn-info" (click)="submitForm()">Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Kullanıcı Formu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <ng-container>
+                        <form [formGroup]="userForm">
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6">
+                                    <label for="user">Kullanıcı Adı</label>
+                                    <input formControlName="username" type="text" class="form-control" id="user"
+                                        placeholder="Kullanıcı Adı">
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="pass">Parola</label>
+                                    <input formControlName="password" type="text" class="form-control" id="pass"
+                                        placeholder="Parola">
+                                </div>
+                            </div>
+
+                            <select #t (change)="getRole(t.value)" id="Unit" class="form-control">
+                                <option>Birim Seç</option>
+                                <option value="doctor+{{item.Id}}" *ngFor="let item of noRegisteredDoctors">
+                                    {{item.Doctor_FullName}}
+                                </option>
+                                <option value="healthunit+{{item.Id}}" *ngFor="let item of noRegisteredUnits">
+                                    {{item.Unit_Name}}
+                                </option>
+
+                            </select>
+
+                        </form>
+                    </ng-container>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white" data-dismiss="modal">Kapat</button>
+                        <button type="submit" class="btn btn-info" (click)="submitUser()">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

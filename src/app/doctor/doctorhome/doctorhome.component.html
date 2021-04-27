@@ -1,0 +1,42 @@
+<div class="card shadow-lg" style="height: 600px;">
+    <div class="card-header">
+        <h4>Doktor Bilgileri</h4>
+    </div>
+
+    <div class="card-body" style="overflow-y: auto;">
+        <div class="row">
+            <div class="col-md-5">
+                <table class="table table-borderless ">
+                    <tbody>
+                        <tr>
+                            <td>Doktor Adı ve Soyadı :</td>
+                            <td>{{doctor?.Doctor_FullName}}</td>
+                        </tr>
+                        <tr>
+                            <td>Doktor Telefon Numarası :</td>
+                            <td>{{doctor?.Doctor_Phone}}</td>
+                        </tr>
+                        <tr>
+                            <td>Doktor Adresi :</td>
+                            <td>{{doctor?.Doctor_Adress}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-7">
+
+                <div class="mt-2 ml-5">
+                    <div class="card" style="width: 200px;">
+
+                        <img src="{{doctor?.Image_Url}}" class="card-img img-thumbnail"
+                            style="width: 200px; height: 200px;">
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,216 @@
+<style>
+    .icon {
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: inherit;
+    }
+</style>
+
+<body>
+    <nav class="navbar  fixed-top navbar-expand-lg justify-content-between">
+        <a class="navbar-brand text-white"><i class="fas fa-2x fa-syringe"> Vaccine Stock</i></a>
+        <form class="form-inline">
+            <button class="btn btn-outline-light mt-3" type="button" data-toggle="modal" data-target="#modal">Kayıt
+                Ol</button>
+            <button class="btn btn-outline-light mt-3" routerLink='/' routerLinkActive="router-link-active"
+                type="submit">Giriş yap</button>
+        </form>
+    </nav>
+
+    <div class="jumbotron jumbotron-fluid h-50"
+        style="background-image: url(https://cdn.e-devlet.gov.tr/themes/izmir/images/banners/m00019.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+        <div class="container" style="margin-top: 100px;">
+            <input type="text" placeholder="&#xF002; merhaba size nasıl yardımcı olabilirim ?"
+                class="icon w-75 form-control-lg form-control m-auto rounded">
+            <p style="font-size: small;" class="text-center lead mt-3 text-white font-weight-bold">Vaccine stock ile
+                bilgi ve belgelerinize tek noktadan ulaşabilir, başvuru işlemlerinizi hızla gerçekleştirebilirsiniz</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <div class="card shadow-lg text-center">
+
+                    <div class="card-body card-h">
+
+                        <div class="card-title"><i class="fas fa-2x fa-sync-alt"></i></div>
+                        <h5 class="card-title">e-Hizmetler</h5>
+                        <p class="card-text">Aşı Sorgulama, Başvuru ve Randevu hizmetleri.</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card shadow-lg text-center">
+
+                    <div class="card-body card-h">
+                        <div class="card-title"><i class="fas fa-2x fa-building"></i></div>
+                        <h5 class="card-title">Kurumlar</h5>
+                        <p class="card-text">Sağlık kurumlarının hizmetleri ve iletişim bilgileri.</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card shadow-lg text-center">
+
+                    <div class="card-body card-h">
+                        <div class="card-title"><i class="fas fa-2x fa-map-signs"></i></div>
+                        <h5 class="card-title">İletişim</h5>
+
+                        <p class="card-text">
+                            Üretici kurumların iletişim bilgileri ve Kurum hizmetleri.</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card shadow-lg text-center">
+                    <div class="card-body card-h">
+                        <div class="card-title"><i class="fas fa-2x fa-industry"></i></div>
+                        <h5 class="card-title">Firmalar</h5>
+                        <p class="card-text">Şirketlerdeki aşı satın alma ve abonelik bilgilerinize erişin.</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card shadow-lg text-center">
+                    <div class="card-body card-h">
+                        <div class="card-title"><i class="fas fa-2x fa-comments"></i></div>
+                        <h5 class="card-title">Hızlı Çözüm</h5>
+                        <p class="card-text">
+                            Şikayet, öneri, soru ve isteklerinizi bize iletin.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6 mt-3">
+                
+                <info-piechart></info-piechart>
+            </div>
+            <div class="col-md-6 mt-3">
+                <info-piechartstock></info-piechartstock>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Bakanlık Kayıt Formu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <select #t (change)="option(t)" class="btn btn-outline-info my-auto float-right">
+                        <option>Bakanlık</option>
+                        <option>Üretici</option>
+                    </select>
+                    <div class="mt-5">
+                        <ng-container>
+
+                            <form *ngIf="optionText=='Bakanlık'" [formGroup]="registerForm">
+                                <div class="form-row">
+
+                                    <div class="form-group col-md-6">
+                                        <label for="name">Ülke Adı</label>
+                                        <input formControlName="name" type="text" class="form-control" id="name">
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="need">Ülke İhtiyacı</label>
+                                        <input formControlName="need" type="text" class="form-control" id="need">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="total">Toplam Aşı</label>
+                                        <input formControlName="total" type="text" class="form-control" id="total">
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="img">Resim Adresi</label>
+                                        <input formControlName="img" type="text" class="form-control" id="img">
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="username">Kullanıcı Adı</label>
+                                        <input formControlName="username" type="text" class="form-control"
+                                            id="username">
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Parola</label>
+                                        <input formControlName="password" type="password" class="form-control">
+                                    </div>
+                                </div>
+
+
+
+                            </form>
+                            <form *ngIf="optionText=='Üretici'" [formGroup]="producerForm">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="username">Kullanıcı Adı</label>
+                                        <input formControlName="username" type="text" class="form-control"
+                                            id="username">
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Parola</label>
+                                        <input formControlName="password" type="password" class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="name">Üretici Adı</label>
+                                        <input formControlName="name" type="text" class="form-control" id="name">
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="need">Üretici Ülke</label>
+                                        <input formControlName="country" type="text" class="form-control" id="need">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="email">Üretici Email</label>
+                                        <input formControlName="email" type="email" class="form-control" id="email">
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="total">Üretici Telefon</label>
+                                        <input formControlName="phone" type="text" class="form-control" id="total">
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="address">Üretici Adresi</label>
+                                        <input formControlName="address" type="text" class="form-control" id="address">
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="img">Resim Adresi</label>
+                                        <input formControlName="img" type="text" class="form-control" id="img">
+
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </ng-container>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger text-white" data-dismiss="modal">Vazgeç</button>
+                            <button type="submit" class="btn btn-info" (click)="create()">Kayıt Ol</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>

@@ -1,0 +1,166 @@
+<div class="card shadow-lg mt-2" style="height: 600px;">
+    <div class="card-header">
+        <h4 style="position: relative; top: 20px;">Hastalar</h4>
+        <button type="button" style="position: relative; top: -14px;" class="btn btn-info float-right"
+            data-toggle="modal" data-target="#modal">
+            Hasta Ekle
+        </button>
+
+    </div>
+
+    <div class="card-body" style="overflow-y: auto;">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead class="table-borderless">
+                        <tr class="text-center">
+                            <th scope="col"></th>
+                            <th scope="col">Ad ve Soyad</th>
+                            <th scope="col">Telefon</th>
+                            <th scope="col">Adres</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of patients" class="text-center">
+                            <td><img class="img-thumbnail" src="{{item?.Image_Url}}"
+                                    style="height: 100px; width: 100px;"></td>
+                            <td style="width: 200px;">{{item?.Patient_FullName}}</td>
+                            <td>{{item?.Patient_Phone}}</td>
+                            <td>{{item?.Patient_Adress}}</td>
+                            <td><button class="btn btn-sm btn-danger" (click)="deletePatient(item)">Sil</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Hasta Ekleme Formu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <ng-container>
+                        <form [formGroup]="form">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="username">T.C. Kimlik No</label>
+                                    <input formControlName="username" type="text" class="form-control" id="username"
+                                        placeholder="699xxx9999x">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="name">Ad-Soyad</label>
+                                    <input formControlName="name" type="text" class="form-control" id="name"
+                                        placeholder="exp:Ulaş">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="age">Yaş</label>
+                                    <input formControlName="age" type="text" class="form-control" id="age"
+                                        placeholder="exp:18">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="phone">Telefon</label>
+                                    <input formControlName="phone" type="text" class="form-control" id="phone"
+                                        placeholder="05555555555">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Address">Adres</label>
+                                <input formControlName="address" type="text" class="form-control" id="Address"
+                                    placeholder="Bahçelievler/İstanbul">
+                            </div>
+                            <div class="form-group">
+                                <label for="img">Resim Adresi</label>
+                                <input formControlName="img" type="text" class="form-control" id="img"
+                                    placeholder="http://localhost:4200/admin">
+                            </div>
+
+                            <div class="form-check">
+                                <input value="false" formControlName="cronic" class="form-check-input" type="checkbox"
+                                    id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Kronik Hastalık
+                                </label>
+                            </div>
+                        </form>
+
+                    </ng-container>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white" data-dismiss="modal">Kapat</button>
+                        <button type="submit" class="btn btn-info" (click)="savePatient()">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="usermodal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Hasta Ekleme Formu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <ng-container>
+                        <form [formGroup]="userForm">
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6">
+                                    <label for="user">Kullanıcı Adı</label>
+                                    <input formControlName="username" type="text" class="form-control" id="user"
+                                        placeholder="Kullanıcı Adı">
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="pass">Parola</label>
+                                    <input formControlName="password" type="text" class="form-control" id="pass"
+                                        placeholder="Parola">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <select #t (change)="getId(t.value)" id="Unit" class="form-control">
+                                        <option>Hasta Seç</option>
+
+                                        <option value="{{item.Id}}" *ngFor="let item of noRegisteredPatients">
+                                            {{item.Patient_FullName}}
+                                        </option>
+
+                                    </select>
+                                </div>
+
+
+                            </div>
+
+
+
+                        </form>
+
+                    </ng-container>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white" data-dismiss="modal">Kapat</button>
+                        <button type="submit" class="btn btn-info" (click)="saveUser()">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

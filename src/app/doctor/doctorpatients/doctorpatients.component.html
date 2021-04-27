@@ -1,0 +1,149 @@
+<div class="card shadow-lg mt-1" style="height: 200px;">
+    <div class="card-header card-header text-uppercase font-weight-bold">
+        Faz 1
+    </div>
+
+    <div class="card-body" style="overflow-y: auto;">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead class="table-borderless">
+                        <tr class="text-center">
+                            <th scope="col">Tarih</th>
+                            <th scope="col">Hasta Ad ve Soyadı</th>
+                            <th scope="col">Hasta Yaşı</th>
+                            <th scope="col">Hasta Telefonu</th>
+                            <th scope="col">Hasta Adresi</th>
+                            <th scope="col">Kronik Hasta</th>
+                            <th scope="col">Aşı Durumu</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let patient of appointmentPatientPhaseOne" class="text-center">
+                            <td>{{patient?.Appointment_Date.split('T')[0]}}
+                                {{patient?.Appointment_Date.split('T')[1].split('.')[0]}}</td>
+                            <td>{{patient?.Patient_FullName}}</td>
+                            <td style="width: 200px;">{{patient?.Patient_Age}}</td>
+                            <td>{{patient?.Patient_Phone}}</td>
+                            <td>{{patient?.Patient_Adress}}</td>
+                            <td><input style="width: 20px; height: 20px;" class="form-check-input" disabled
+                                    [checked]="patient?.HasCronicPatient" type="checkbox">
+                            </td>
+
+                            <td><input style="width: 20px; height: 20px;" class="form-check-input" disabled
+                                    [checked]="patient?.HasVaccinated" type="checkbox">
+                            </td>
+                            <td><button class="btn btn-danger btn-sm" (click)="delete(patient)">Sil</button></td>
+                            <td><button class="btn btn-info btn-sm" (click)="submitPhaseOne(patient)">Onayla</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="card shadow-lg mt-1" style="height: 200px;">
+    <div class="card-header card-header text-uppercase font-weight-bold">
+        Faz 2
+    </div>
+
+
+    <div class="card-body" style="overflow-y: auto;">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead class="table-borderless">
+                        <tr class="text-center">
+                            <th scope="col">Tarih</th>
+                            <th scope="col">Hasta Ad ve Soyadı</th>
+                            <th scope="col">Hasta Yaşı</th>
+                            <th scope="col">Hasta Telefonu</th>
+                            <th scope="col">Hasta Adresi</th>
+                            <th scope="col">Kronik Hasta</th>
+                            <th scope="col">Aşı Durumu</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let patient of appointmentPatientPhaseTwo" class="text-center">
+                            <td style="width: 200px;">{{patient?.Appointment_Date}}
+                            </td>
+                            <td style="width: 200px;">{{patient?.Patient_FullName}}</td>
+                            <td style="width: 200px;">{{patient?.Patient_Age}}</td>
+                            <td>{{patient?.Patient_Phone}}</td>
+                            <td style="width: 200px;">{{patient?.Patient_Adress}}</td>
+                            <td><input style="width: 20px; height: 20px;" class="form-check-input" disabled
+                                    [checked]="patient?.HasCronicPatient" type="checkbox">
+                            </td>
+
+                            <td><input style="width: 20px; height: 20px;" class="form-check-input" disabled
+                                    [checked]="patient?.HasVaccinated" type="checkbox">
+                            </td>
+                            <td><button class="btn btn-danger btn-sm" (click)="delete(patient)">Sil</button></td>
+                            <td><button class="btn btn-info btn-sm" (click)="finish(patient)">Bitir</button></td>
+                            <td><button class="btn btn-info btn-sm" (click)="submitPhaseTwo(patient)">Ekstra</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="card shadow-lg mt-1" style="height: 200px;">
+    <div class="card-header text-uppercase font-weight-bold">
+        Ekstra Faz
+    </div>
+
+
+    <div class="card-body" style="overflow-y: auto;">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead class="table-borderless">
+                        <tr class="text-center">
+                            <th scope="col">Tarih</th>
+                            <th scope="col">Hasta Ad ve Soyadı</th>
+                            <th scope="col">Hasta Yaşı</th>
+                            <th scope="col">Hasta Telefonu</th>
+                            <th scope="col">Hasta Adresi</th>
+                            <th scope="col">Kronik Hasta</th>
+                            <th scope="col">Aşı Durumu</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let patient of appointmentPatientPhaseExtra" class="text-center">
+                            <td>{{patient?.Appointment_Date}}
+                            </td>
+                            <td>{{patient?.Patient_FullName}}</td>
+                            <td style="width: 200px;">{{patient?.Patient_Age}}</td>
+                            <td>{{patient?.Patient_Phone}}</td>
+                            <td>{{patient?.Patient_Adress}}</td>
+                            <td><input style="width: 20px; height: 20px;" class="form-check-input" disabled
+                                    [checked]="patient?.HasCronicPatient" type="checkbox">
+                            </td>
+
+                            <td><input style="width: 20px; height: 20px;" class="form-check-input" disabled
+                                    [checked]="patient?.HasVaccinated" type="checkbox">
+                            </td>
+                            <td><button class="btn btn-danger btn-sm" (click)="delete(patient)">Sil</button></td>
+                            <td><button class="btn btn-info btn-sm" (click)="finish(patient)">Bitir</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

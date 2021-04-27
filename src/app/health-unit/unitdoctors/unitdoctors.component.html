@@ -1,0 +1,92 @@
+<div class="card shadow-lg mt-2" style="height: 600px;">
+    <div class="card-header">
+        <h4 style="position: relative; top: 20px;">Doktorlar</h4>
+        <button type="button" style="position: relative; top: -14px;" class="btn btn-info float-right"
+            data-toggle="modal" data-target="#modal">
+            Doktor Ekle
+        </button>
+    </div>
+
+    <div class="card-body" style="overflow-y: auto;">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead class="table-borderless">
+                        <tr class="text-center">
+                            <th scope="col"></th>
+                            <th scope="col">Ad ve Soyad</th>
+                            <th scope="col">Telefon</th>
+                            <th scope="col">Adres</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let doctor of doctors" class="text-center">
+                            <td><img class="img-thumbnail" src="{{doctor?.Image_Url}}"
+                                    style="height: 100px; width: 100px;"></td>
+                            <td style="width: 200px;">{{doctor?.Doctor_FullName}}</td>
+                            <td>{{doctor?.Doctor_Phone}}</td>
+                            <td>{{doctor?.Doctor_Adress}}</td>
+                            <td><button class="btn btn-sm btn-danger" (click)="deleteDoctor(doctor)">Sil</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Doktor Atama Formu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <ng-container>
+                        <form [formGroup]="doctorForm">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="name">Ad-Soyad</label>
+                                    <input formControlName="name" type="text" class="form-control" id="name"
+                                        placeholder="exp:Ulaş">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="phone">Telefon</label>
+                                    <input formControlName="phone" type="text" class="form-control" id="phone"
+                                        placeholder="05555555555">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Address">Adres</label>
+                                <input formControlName="address" type="text" class="form-control" id="Address"
+                                    placeholder="Bahçelievler/İstanbul">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="img">Resim Adresi</label>
+                                <input formControlName="imageurl" type="text" class="form-control" id="img"
+                                    placeholder="http://localhost:4200/admin">
+                            </div>
+
+
+                        </form>
+
+
+
+                    </ng-container>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white" data-dismiss="modal">Kapat</button>
+                        <button type="submit" class="btn btn-info" (click)="submitForm()">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

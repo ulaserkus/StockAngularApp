@@ -1,0 +1,73 @@
+<body>
+    <nav class="navbar navbar-dark sticky-top bg-info flex-md-nowrap">
+        <a class="navbar-brand col-sm-3 col-md-2"><i class="fas fa-syringe"></i> Vaccine Stock</a>
+
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link text-white" (click)="logOut()">Sign out</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container-fluid ">
+        <div class="row h-100">
+            <div class="col-md-2 px-0">
+                <div class="d-flex flex-column text-white bg-info" style="width: 100%; height:100%;">
+                    <ul class="nav nav-pills flex-column mb-auto text-center">
+                        <li class="nav-item">
+                            <a class="nav-link text-white sidelink" [ngClass]="{'sidelink-active': componentnumber==1}"
+                                (click)="homeBtn()">
+                                Anasayfa
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link text-white sidelink" [ngClass]="{'sidelink-active': componentnumber==2}"
+                                (click)="reportBtn()">
+                                Raporları Yönet
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link text-white sidelink" [ngClass]="{'sidelink-active': componentnumber==3}"
+                                (click)="doctorBtn()">
+                                Doktorları Yönet
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link text-white sidelink" [ngClass]="{'sidelink-active': componentnumber==4}"
+                                (click)="patientBtn()">
+                                Hastaları Yönet
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-10 px-0">
+                <div class="h-100 p-4 bg-light" style="width: 100%;">
+                    
+                        <div *ngIf="componentnumber==1">
+                            <unit-home [data]="data"></unit-home>
+                        </div>
+                        <div *ngIf="componentnumber==2">
+                            <unit-reports [data]="data"></unit-reports>
+                        </div>
+                        <div *ngIf="componentnumber==3">
+                             <unit-unitdoctors [data]="data"></unit-unitdoctors>
+                        </div>
+                        <div *ngIf="componentnumber==4">
+                            <unit-unitpatients [data]="data"></unit-unitpatients>
+                       </div>
+                   
+                    
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+</body>
